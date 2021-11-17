@@ -1,6 +1,6 @@
 import useGameState from "./useGameState";
 
-function calculateWinner(squares : any) {
+function calculateWinner(squares: any) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -20,15 +20,15 @@ function calculateWinner(squares : any) {
   return null;
 }
 
-function Square({ id, value, onClick } : any) {
+function Square({ id, value, onClick }: any) {
   return (
     <button data-testid={`square-${id}`} className="square" onClick={onClick}>
-      {value}
+      {formatValue(value)}
     </button>
   );
 }
 
-const Board = ({ squares, onSquareClick } : any) => {
+const Board = ({ squares, onSquareClick }: any) => {
   const renderSquare = (squareId: number) => {
     return (
       <Square
@@ -60,6 +60,13 @@ const Board = ({ squares, onSquareClick } : any) => {
   );
 };
 
+const formatValue = (value: string) => {
+  if (value === 'X')
+    return '❌';
+  if (value === 'O')
+    return '⭕';
+}
+
 const Game: React.FC = () => {
   const {
     currentBoard,
@@ -79,11 +86,11 @@ const Game: React.FC = () => {
   const renderStatusMessage = () => {
     const winner = calculateWinner(currentBoard);
     if (winner) {
-      return "Winner: " + winner;
+      return "Winner: " + formatValue(winner);
     } else if (stepNumber === 9) {
       return "Draw: Game over";
     } else {
-      return "Next player: " + (nextPlayer === 'X' ? "❌" : "⭕");
+      return "Next player: " + (formatValue(nextPlayer));
     }
   };
 
