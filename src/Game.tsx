@@ -72,7 +72,8 @@ const Game: React.FC = () => {
     currentBoard,
     stepNumber,
     nextPlayer,
-    computeMove
+    computeMove,
+    restartGame
   } = useGameState();
 
   const handleSquareClick = (squareId: number) => {
@@ -109,6 +110,11 @@ const Game: React.FC = () => {
         <div className="game-info">
           <div>Current step: {stepNumber}</div>
           <div>{renderStatusMessage()}</div>
+          <div>{(stepNumber === 9 || calculateWinner(currentBoard)) && (
+            <button data-testid={`restart`} className="restart" onClick={restartGame}>
+              Restart Game
+            </button>
+          )}</div>
         </div>
       </div>
     </>

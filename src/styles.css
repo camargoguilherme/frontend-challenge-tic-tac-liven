@@ -49,3 +49,14 @@ ul {
 .game-info {
   margin-left: 20px;
 }
+
+.restart {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 5px;
+  text-align: center;
+}
